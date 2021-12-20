@@ -2,13 +2,13 @@ using HorizonSideRobots
 
 function putpointcorners(r)
     start = []
-    start = gocorner!(r)
-    pointincorner!(r)
+    start = gocorner(r)
+    pointcorners(r)
     goback(r,start)
 end
 
 function counter(r,side)
-    c=0
+    c = 0
     while isborder(r,side) == 0
         move!(r,side)
         c += 1    
@@ -16,8 +16,8 @@ function counter(r,side)
     return c
 end
 
-function gocorner!(r)
-start=[]
+function gocorner(r)
+start = []
     while isborder(r,Nord)==0 || isborder(r,West)==0
         x=counter(r,Nord)
         y=counter(r,West)
@@ -27,7 +27,7 @@ start=[]
     return start
 end
 
-function pointincorner!(r)
+function pointcorners(r)
     for side in [Sud,Ost,Nord,West]
         while isborder(r,side)==0
             move!(r,side)
