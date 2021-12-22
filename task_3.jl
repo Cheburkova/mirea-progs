@@ -1,10 +1,8 @@
 using HorizonSideRobots
 
 function corner(r::Robot)
-    s=0::Int
-    n=0::Int
-    o=0::Int
-    w=0::Int
+    n=0
+    w=0
     while !isborder(r,Nord)
         move!(r,Nord)
         n+=1
@@ -20,10 +18,10 @@ function corner(r::Robot)
     while !isborder(r,West)
         move!(r,West)
     end
-    for o in 1:w
+    for a in 1:w
         move!(r,Ost)
     end
-    for s in 1:n
+    for a in 1:n
         move!(r,Sud)
     end
 end
