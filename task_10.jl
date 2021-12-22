@@ -27,7 +27,7 @@ function obhod(r)
     return c,count
 end
     
-function dasha(r)
+function main(r)
     x=0
     y=0
     i=0
@@ -40,4 +40,4 @@ function dasha(r)
     return print(i / j)
 end
     
-dasha(r)
+main(r)
