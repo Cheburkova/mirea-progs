@@ -37,51 +37,43 @@ end
 
 function shax(r::Robot)
     putmarker!(r)
-    i=0
-
+    i = 0
     while !isborder(r,Nord)
         if !isborder(r,Sud)
             move!(r,Nord)
         end
-        if i == 1
-            i = 0
-        else
-            i = 1
-            putmarker!(r)
-        end
-
-        while !isborder(r,Ost)
-            if i == 1
-                move!(r,Ost)
-                i = 0
-            else
-                move!(r,Ost)
-                putmarker!(r)
-                i = 1
-            end
-        end
-
+        i = obr(r,i)
+        i = stripe(r,Ost,i)
         if !isborder(r,Nord)
             move!(r,Nord)
-            if i == 1
-                i = 0
-            else
-                i = 1
-                putmarker!(r)
-            end
-            while !isborder(r,West)
-                if i == 1
-                    move!(r,West)
-                    i = 0
-                else
-                    move!(r,West)
-                    putmarker!(r)
-                    i = 1
-                end
-            end
+            i = obr(r,i)
+            i = stripe(r,West,i)
         end
-
     end
+end
+
+function obr(r,i)
+    if i == 1
+        i = 0
+    else
+        i = 1
+        putmarker!(r)
+    end
+    return i
+end
+
+function stripe(r,side,i)
+    while !isborder(r,side)
+        if i == 1
+            move!(r,side)
+            i = 0
+        else
+            move!(r,side)
+            putmarker!(r)
+            i = 1
+        end
+    end
+    return i
 end
 
 chessall(r)
